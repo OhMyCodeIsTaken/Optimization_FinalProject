@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabsInstantiated: []
   _prefabToCreate: {fileID: 6301344980559957079, guid: 484c34cdabb416649ac426cd982dfd18, type: 3}
+  _pooler: {fileID: 438094033}
 --- !u!114 &438094033
 MonoBehaviour:
   m_ObjectHideFlags: 0

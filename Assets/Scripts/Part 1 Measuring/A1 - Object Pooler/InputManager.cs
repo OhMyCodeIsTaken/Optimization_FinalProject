@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _prefabsInstantiated;
     [SerializeField] private GameObject _prefabToCreate;
+    [SerializeField] private ExampleMonobehaviorPooler _pooler;
+    [SerializeField] private List<ExampleMonobehavior> _pooledObjects = new List<ExampleMonobehavior>();
 
     // Update is called once per frame
     void Update()
@@ -18,6 +20,16 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             DestroyPrefabXTimes(2000);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GetPooledObjects(2000);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SetOffPooledObjects(2000);
         }
     }
 
@@ -34,6 +46,23 @@ public class InputManager : MonoBehaviour
         for (int i = 0; i < numberOfDestroys; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
+    private void GetPooledObjects(int numberOfInstances)
+    {
+        for (int i = 0; i < numberOfInstances; i++)
+        {
+            _pooledObjects.Add(_pooler.GetPooledObject());
+        }
+    }
+
+    private void SetOffPooledObjects(int numberOfInstances)
+    {
+        for (int i = 0; i < numberOfInstances; i++)
+        {
+            _pooler.PushPooledInstance(_pooledObjects[0]);
+            _pooledObjects.RemoveAt(0);
         }
     }
 }

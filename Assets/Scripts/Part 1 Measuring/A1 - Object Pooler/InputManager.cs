@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _prefabsInstantiated;
     [SerializeField] private GameObject _prefabToCreate;
     [SerializeField] private ExampleMonobehaviorPooler _pooler;
     [SerializeField] private List<ExampleMonobehavior> _pooledObjects = new List<ExampleMonobehavior>();

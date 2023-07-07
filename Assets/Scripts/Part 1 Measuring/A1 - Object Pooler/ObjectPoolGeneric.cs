@@ -6,14 +6,12 @@ public class ObjectPoolGeneric<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField] Stack<T> _pooledObjects = new Stack<T>();
     public T PrefabToPool;
     public int NumToPool;
-    private int _numberOfActiveObjects = 0;
     public Stack<T> PooledObjects { get => _pooledObjects; set => _pooledObjects = value; }
 
 
     private void OnDestroy()
     {
         _pooledObjects.Clear();
-        _numberOfActiveObjects = 0;
     }
     public void Awake()
     {
@@ -29,12 +27,13 @@ public class ObjectPoolGeneric<T> : MonoBehaviour where T : MonoBehaviour
     {
         if(_pooledObjects.Count > 0 && _pooledObjects.Peek().gameObject.activeSelf == false )
         {
-            return _pooledObjects.Pop();
+            T poppedObject = _pooledObjects.Pop();
+            poppedObject.gameObject.SetActive(true);
+            return poppedObject;
         }
 
         T newPooledObject = Instantiate(PrefabToPool, transform);
         newPooledObject.gameObject.SetActive(true);
-        _numberOfActiveObjects++;
         return newPooledObject;
 
     }

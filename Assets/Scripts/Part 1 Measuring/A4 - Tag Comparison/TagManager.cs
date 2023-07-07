@@ -18,12 +18,12 @@ public class TagManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ListTagComparison();
+            ListTagComparisonOperator();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ListCompareTag();
+            ListCompareTagFunction();
         }
     }
 
@@ -35,7 +35,7 @@ public class TagManager : MonoBehaviour
         }
     }
 
-    private void ListTagComparison()
+    private void ListTagComparisonOperator()
     {
         foreach (GameObject go in _taggedPrefabsList)
         {
@@ -46,7 +46,7 @@ public class TagManager : MonoBehaviour
         }
     }
 
-    private void ListCompareTag()
+    private void ListCompareTagFunction()
     {
         foreach (GameObject go in _taggedPrefabsList)
         {
